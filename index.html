@@ -6,5 +6,44 @@
   </head>
   <body>
     <h1>Guess song</h1>
-  </body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Song Player</title> 
+    <style>
+      body {
+        background-color: blanchedalmond;}
+      iframe {
+        border:none;
+        border-radius: 12px;}
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+    </head>
+    <body>
+    <h1>Guess the Random song that is generated</h1>
+    <div id="player"></div>
+    <script>
+      //Adding the spotify embed links here or youtube
+      const songs = [
+      "https://open.spotify.com/embed/track/6VNXmo59yDYgcwLS17UNAW?utm_source=generator",
+      "https://open.spotify.com/embed/track/709ZIqPHyFOpx2QdjmeWAM?utm_source=generator",
+      ];
+       function playRandom() {
+            const randomUrl = songs[Math.floor(Math.random() * songs.length)];
+
+            document.getElementById("player").innerHTML = `
+                <iframe src="${randomUrl}" allow="autoplay; encrypted-media"></iframe>
+            `;
+        }
+    </script>
+    <button onclick="playRandom()">Play Random</button>
+
+</body>
 </html>
+
+
