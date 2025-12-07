@@ -13,10 +13,7 @@
     <title>Random Song Player</title> 
     <style>
       body {
-        background-color: blanchedalmond;}
-      iframe {
-        border:none;
-        border-radius: 12px;}
+        background-color: plum;}
       button {
         padding: 10px 20px;
         font-size: 18px;
@@ -25,10 +22,18 @@
     </style>
     </head>
     <body>
-    <h1>Guess the Random song that is generated</h1>
+    <h1>Guess the Random song </h1>
     <audio id="player"></audio>
     <button onclick="playRandomSong()"> Play Random Song</button>
-
+    <button onclick="checkAnswer()">Check Answer</button>
+    <p id="result"></p>
+    <label for="Songs" >Select the correct song </label>
+    <select name = "Songs" id="Songs">
+      <option value="Dracula">Dracula by Tame Impala</option>
+      <option value="Nuevayol">NUEVAYol by Bad Bunny</option>
+      <option value="WorkBitch">Work Bitch by Britney Spears</option>
+      <option value="Delresto">DELRESTO by Travis Scott</option>
+    </select>
     <script>
       //Adding the mp3 files here
       const songs = [
@@ -37,17 +42,46 @@
         "Song3.mp3.mp3",
         "Song4.mp3.mp3"
       ];
+      const correctAnswers={
+        "Song1.mp3.mp3": "Nuevayol",
+        "Song2.mp3.mp3": "Delresto",
+        "Song3.mp3.mp3": "WorkBitch",
+        "Song4.mp3.mp3": "Dracula"
+      };
       const playDuration = 10000;
+      let currentSong = null;
       function playRandomSong() {
         const audio = document.getElementById("player");
         const randomIndex = Math.floor(Math.random() * songs.length);
-        audio.src = songs[randomIndex];
+        currentSong = songs[randomIndex]; // Saves the current mp3 file playing
+        audio.src = currentSong;
         audio.play();
       setTimeout(() => {
         audio.pause();
         audio.curretTime = 0;
       },playDuration);
       }
+    function checkAnswer() {
+      const audio = document.getElementById("player");
+      const selected = document.getElementById("Songs").value;
+      const result = document.getElementById("result");
+
+      if (!currentSong) {
+        result.textContent = "Play a song first!";
+        result.style.color = "red"
+        return;
+      }
+      const correctAnswer = correctAnswers[currentSong];
+      const isCorrect = selected === correctAnswer;
+
+      if(isCorrect) {
+        result.textContent = "Correct!";
+        result.style.color = "green"
+      } else {
+        result.textContent = "Incorrect";
+        result.style.color = "red";
+      }
+    }
     </script>
      
 </body>
