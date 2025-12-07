@@ -26,23 +26,30 @@
     </head>
     <body>
     <h1>Guess the Random song that is generated</h1>
-    <div id="player"></div>
+    <audio id="player"></audio>
+    <button onclick="playRandomSong()"> Play Random Song</button>
+
     <script>
-      //Adding the spotify embed links here or youtube
+      //Adding the mp3 files here
       const songs = [
-      "https://open.spotify.com/embed/track/6VNXmo59yDYgcwLS17UNAW?utm_source=generator",
-      "https://open.spotify.com/embed/track/709ZIqPHyFOpx2QdjmeWAM?utm_source=generator",
+        "Song1.mp3.mp3",
+        "Song2.mp3.mp3",
+        "Song3.mp3.mp3",
+        "Song4.mp3.mp3"
       ];
-       function playRandom() {
-            const randomUrl = songs[Math.floor(Math.random() * songs.length)];
-
-            document.getElementById("player").innerHTML = `
-                <iframe src="${randomUrl}" allow="autoplay; encrypted-media"></iframe>
-            `;
-        }
+      const playDuration = 10000;
+      function playRandomSong() {
+        const audio = document.getElementById("player");
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        audio.src = songs[randomIndex];
+        audio.play();
+      setTimeout(() => {
+        audio.pause();
+        audio.curretTime = 0;
+      },playDuration);
+      }
     </script>
-    <button onclick="playRandom()">Play Random</button>
-
+     
 </body>
 </html>
 
