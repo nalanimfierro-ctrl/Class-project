@@ -43,14 +43,12 @@
         "Song1.mp3.mp3",
         "Song2.mp3.mp3",
         "Song3.mp3.mp3",
-        "Song4.mp3.mp3"
-      ];
+        "Song4.mp3.mp3" ];
       const correctAnswers={
         "Song1.mp3.mp3": "Nuevayol",
         "Song2.mp3.mp3": "Delresto",
         "Song3.mp3.mp3": "WorkBitch",
-        "Song4.mp3.mp3": "Dracula"
-      };
+        "Song4.mp3.mp3": "Dracula" };
       const playDuration = 10000;
       let currentSong = null;
       function playRandomSong() {
@@ -61,9 +59,7 @@
         audio.play();
       setTimeout(() => {
         audio.pause();
-        audio.curretTime = 0;
-      },playDuration);
-      }
+        audio.curretTime = 0;   },playDuration);}
       let timeLeft =5;
       const timer =setInterval(()=> {
         timeLeft--;
@@ -97,8 +93,7 @@
       }
       setTimeout(() => {
         document.body.style.backgroundColor = ""
-      }, 2000);
-    }
+      }, 2000); }
     </script>    
 </body>
 </html>
