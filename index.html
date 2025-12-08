@@ -17,8 +17,8 @@
       button {
         padding: 10px 20px;
         font-size: 18px;
-        cursor: pointer;
-      }
+        cursor: pointer;}
+        body{transition: background-color 0.5s ease;}
     </style>
     </head>
     <body>
@@ -27,6 +27,7 @@
     <button onclick="playRandomSong()"> Play Random Song</button>
     <button onclick="checkAnswer()">Check Answer</button>
     <p id="result"></p>
+    <p id="timer">Time left:5</p>
     <label for="Songs" >Select the correct song </label>
     <select name = "Songs" id="Songs">
       <option value="Dracula">Dracula by Tame Impala</option>
@@ -61,11 +62,20 @@
         audio.curretTime = 0;
       },playDuration);
       }
+      let timeLeft =5;
+      const timer =setInterval(()=> {
+        timeLeft--;
+        document.getElementById("timer").textContent = "Time left:" + timeLeft;
+
+        if(timeLeft <= 0){
+          clearInterval(timer);
+          alert("Time is up");
+        }
+        },5000);
     function checkAnswer() {
       const audio = document.getElementById("player");
       const selected = document.getElementById("Songs").value;
       const result = document.getElementById("result");
-
       if (!currentSong) {
         result.textContent = "Play a song first!";
         result.style.color = "red"
@@ -73,17 +83,21 @@
       }
       const correctAnswer = correctAnswers[currentSong];
       const isCorrect = selected === correctAnswer;
-
       if(isCorrect) {
         result.textContent = "Correct!";
-        result.style.color = "green"
+        result.style.color = "green";
+        document.body.style.backgroundColor = "green";
+
       } else {
         result.textContent = "Incorrect";
         result.style.color = "red";
+        document.body.style.backgroundColor = "red";
       }
+      setTimeout(() => {
+        document.body.style.backgroundColor = ""
+      }, 2000);
     }
-    </script>
-     
+    </script>    
 </body>
 </html>
 
