@@ -15,7 +15,7 @@
     <title>Random Song Player</title> 
     <style>
       body {
-        background-color: plum;}
+        background-color: grey;}
       button {
         padding: 10px 20px;
         font-size: 18px;
@@ -29,7 +29,7 @@
     <button onclick="playRandomSong()"> Play Random Song</button>
     <button onclick="checkAnswer()">Check Answer</button>
     <p id="result"></p>
-    <p id="timer">Time left:5</p>
+    <p id="timer">Time left:8</p>
     <label for="Songs" >Select the correct song </label>
     <select name = "Songs" id="Songs">
       <option value="Dracula">Dracula by Tame Impala</option>
@@ -60,7 +60,7 @@
       setTimeout(() => {
         audio.pause();
         audio.curretTime = 0;   },playDuration);}
-      let timeLeft =5;
+      let timeLeft =8;
       const timer =setInterval(()=> {
         timeLeft--;
         document.getElementById("timer").textContent = "Time left:" + timeLeft;
@@ -69,7 +69,7 @@
           clearInterval(timer);
           alert("Time is up");
         }
-        },5000);
+        },8000);
     function checkAnswer() {
       const audio = document.getElementById("player");
       const selected = document.getElementById("Songs").value;
